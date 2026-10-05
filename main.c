@@ -17,26 +17,17 @@ void nactiPole(int *pole, int velikost) {
     }
 }
 
-void minToMax(int *pole, int velikost) {
+void bubbleSort(int *pole, int velikost, int funkce) {
     for (int i = 0; i < velikost - 1; i++) {
         for (int j = 0; j < velikost - 1 - i; j++) {
             int *misto = &pole[j];
             int *druheMisto = &pole[j + 1];
-            if (*misto > *druheMisto) {
+            if (*misto > *druheMisto && funkce == 0) {
                 int docasne = *misto;
                 *misto = *druheMisto;
                 *druheMisto = docasne;
             }
-        }
-    }
-}
-
-void maxToMin(int *pole, int velikost) {
-    for (int i = 0; i < velikost - 1; i++) {
-        for (int j = 0; j < velikost - 1 - i; j++) {
-            int *misto = &pole[j];
-            int *druheMisto = &pole[j + 1];
-            if (*misto < *druheMisto) {
+            if (*misto < *druheMisto && funkce == 1) {
                 int docasne = *misto;
                 *misto = *druheMisto;
                 *druheMisto = docasne;
@@ -94,42 +85,39 @@ void tvorbaMapy(int velikost) {
 // Moznosti pro pole
 
 void nabidkaPole() {
-    free(pole);
     int moznostProPole = 0;
+
+    printf("Jak chceš veliké pole: ");
+    scanf("%d", &velikost);
+
+    if (velikost <= 0) {
+        printf("Zadej velikost pole větší než 0!");
+        return;
+    }
+    pole = malloc(velikost*sizeof(int));
+    if (pole == NULL) {
+        printf("Pole se nepodařilo vytvořit");
+        return;
+    }
+    nactiPole(pole, velikost);
     while (moznost == 1) {
+        printf("\n 1 - minToMax "
+"\n 2 - maxToMin "
+"\n 3 - Hledani pomoci indexu "
+"\n 4 - Vypis pole "
+"\n 5 - Pridej hodnotu do pole"
+"\n 6 - Vratit se a uložit pole"
+"\n 7 - Vratit se bez uložení pole"
+"\n : ");
+        scanf("%d", &moznostProPole);
+
         switch (moznostProPole) {
-            case 0: {
-                printf("Jak chceš veliké pole: ");
-                scanf("%d", &velikost);
-
-                if (velikost <= 0) {
-                    printf("Zadej velikost pole větší než 0!");
-                    return;
-                }
-                pole = malloc(velikost*sizeof(int));
-                if (pole == NULL) {
-                    printf("Pole se nepodařilo vytvořit");
-                    return;
-                }
-                nactiPole(pole, velikost);
-
-                printf("\n 1 - minToMax "
-           "\n 2 - maxToMin "
-           "\n 3 - Hledani pomoci indexu "
-           "\n 4 - Vypis pole "
-           "\n 5 - Pridej hodnotu do pole"
-           "\n 6 - Vratit se a uložit pole"
-           "\n 7 - Vratit se bez uložení pole"
-           "\n : ");
-                scanf("%d", &moznostProPole);
-                break;
-            }
             case 1:
-                minToMax(pole, velikost);
+                bubbleSort(pole, velikost, 0);
                 sleep(1);
                 break;
             case 2:
-                maxToMin(pole, velikost);
+                bubbleSort(pole, velikost, 1);
                 sleep(1);
                 break;
             case 3:
@@ -149,7 +137,6 @@ void nabidkaPole() {
                 if (cisloPole <= 0) {
                     printf("Nelze uložit do zaporného pole");
                 }
-
                 return;
             case 7:
                 return;
@@ -192,4 +179,5 @@ void nabidka() {
 
 int main() {
     nabidka();
+    free(pole);
 }
