@@ -3,12 +3,17 @@
 #include <unistd.h>
 
 int moznost;
-int ulozenePole = {};
+int pocetPoli = 1;
+int **ulozenePole;
+
+
 
 // Pole funkce
 
 int velikost;
 int *pole;
+
+// Pridani hodnot od uživatele do pole jenž si uživatel vytvořil na začátku
 
 void nactiPole(int *pole, int velikost) {
     for (int i = 0; i < velikost; i++) {
@@ -17,17 +22,19 @@ void nactiPole(int *pole, int velikost) {
     }
 }
 
+// bubble sort pro seřazení pole od nejmenšího po největší/nějvětšího po nejmenšího
+
 void bubbleSort(int *pole, int velikost, int funkce) {
     for (int i = 0; i < velikost - 1; i++) {
         for (int j = 0; j < velikost - 1 - i; j++) {
             int *misto = &pole[j];
             int *druheMisto = &pole[j + 1];
-            if (*misto > *druheMisto && funkce == 0) {
+            if (*misto > *druheMisto && funkce == 0) { // minToMax funkce
                 int docasne = *misto;
                 *misto = *druheMisto;
                 *druheMisto = docasne;
             }
-            if (*misto < *druheMisto && funkce == 1) {
+            if (*misto < *druheMisto && funkce == 1) { // maxToMin Funkce
                 int docasne = *misto;
                 *misto = *druheMisto;
                 *druheMisto = docasne;
@@ -35,6 +42,8 @@ void bubbleSort(int *pole, int velikost, int funkce) {
         }
     }
 }
+
+// Konkretni hodnota v poli pomoci indexu
 
 void konkretniHodnota(int *pole, int velikost) {
     int cislo;
@@ -47,11 +56,15 @@ void konkretniHodnota(int *pole, int velikost) {
     }
 }
 
+// Funkce pro vypsání pole
+
 void vypisPole(int *pole, int velikost) {
     for (int i = 0; i < velikost; i++) {
         printf("%d\n", pole[i]);
     }
 }
+
+// Pridani dalších hodnot do existujícího pole
 
 void pridejHodnotu(int **pole, int *velikost) {
     int zadanaVelikost;
@@ -69,6 +82,16 @@ void pridejHodnotu(int **pole, int *velikost) {
         scanf("%d", &(*pole)[i + *velikost]);
     }
     *velikost += zadanaVelikost;
+}
+
+// Ukládání pole
+
+void ulozitPole(int *pole,int *velikost,int cisloUlozeni) {
+    for (int i = 0; i < *velikost; i++) {
+        ulozenePole[cisloUlozeni][i] = pole[i];
+    }
+    cisloUlozeni++;
+    free(pole);
 }
 
 // Mapa tvorba
@@ -133,10 +156,9 @@ void nabidkaPole() {
                 sleep(1);
                 break;
             case 6:
-                int cisloPole = 0;
-                if (cisloPole <= 0) {
-                    printf("Nelze uložit do zaporného pole");
-                }
+                int cisloUlozeni = 0;
+                ulozitPole(pole, &velikost, cisloUlozeni);
+                printf("Pole ulozeno pod číslem: ", cisloUlozeni);
                 return;
             case 7:
                 return;
@@ -178,6 +200,8 @@ void nabidka() {
     }
 
 int main() {
+    ulozenePole = malloc(pocetPoli *sizeof(*ulozenePole));
     nabidka();
     free(pole);
+    free(ulozenePole);
 }
