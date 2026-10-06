@@ -3,9 +3,10 @@
 #include <unistd.h>
 
 int moznost;
-int pocetPoli = 1;
+int pocetPoli = 0;
 int **ulozenePole;
-
+int *velikostUlozenychPoli;
+int cisloUlozeni = 0;
 
 
 // Pole funkce
@@ -86,12 +87,57 @@ void pridejHodnotu(int **pole, int *velikost) {
 
 // Ukládání pole
 
-void ulozitPole(int *pole,int *velikost,int cisloUlozeni) {
-    for (int i = 0; i < *velikost; i++) {
-        ulozenePole[cisloUlozeni][i] = pole[i];
+void ulozitPole(int *pole,int velikost,int cisloUlozeni) {
+    ulozenePole = realloc(ulozenePole, (pocetPoli + 1) * sizeof(*ulozenePole));
+
+    if (ulozenePole == NULL) {
+        printf("Nepovedlo se uložit pole!");
     }
-    cisloUlozeni++;
-    free(pole);
+
+    velikostUlozenychPoli = realloc(velikostUlozenychPoli, (pocetPoli + 1) * sizeof(int));
+
+    if (velikostUlozenychPoli == NULL) {
+        printf("Nepovedlo se uložit pole!");
+    }
+
+    ulozenePole[pocetPoli] = malloc(velikost * sizeof(int));
+
+    if (ulozenePole[pocetPoli] == NULL) {
+        printf("Nepovedl ose uložit pole!");
+    }
+
+    for (int i = 0; i < velikost; ++i) {
+        ulozenePole[pocetPoli][i] = pole[i];
+    }
+
+    velikostUlozenychPoli[pocetPoli] = velikost;
+
+    printf("Pole ulozeno pod číslem: %d\n", cisloUlozeni);
+    pocetPoli++;
+
+    // debug
+
+    for (int i = 0; i < pocetPoli; ++i) {
+        printf("%d", velikostUlozenychPoli[i]);
+    }
+}
+
+// Nacist z ulozenych polí
+
+void nacistZUlozenychPoli() {
+    int cisloPole = 0;
+    printf("\n Zadej číslo pole které chceš načíst: ");
+    scanf("%d", &cisloPole);
+    if (cisloPole < 0) {
+        printf("\n Číslo nesmí být nula nebo záporné");
+    }
+    printf("\n Vypisuji ulozene pole: \n");
+    for (int i = 0; i < velikostUlozenychPoli[cisloPole]; i++) {
+        printf("%d\n", ulozenePole[cisloPole][i]);
+    }
+    for (int i = 0; i < velikostUlozenychPoli[cisloPole]; ++i) {
+        pole[i] = ulozenePole[cisloPole][i];
+    }
 }
 
 // Mapa tvorba
@@ -129,8 +175,9 @@ void nabidkaPole() {
 "\n 3 - Hledani pomoci indexu "
 "\n 4 - Vypis pole "
 "\n 5 - Pridej hodnotu do pole"
-"\n 6 - Vratit se a uložit pole"
-"\n 7 - Vratit se bez uložení pole"
+"\n 6 - Načíst uložené pole. Smaže se aktualní pole!"
+"\n 7 - Vratit se a uložit pole"
+"\n 8 - Vratit se bez uložení pole"
 "\n : ");
         scanf("%d", &moznostProPole);
 
@@ -156,11 +203,12 @@ void nabidkaPole() {
                 sleep(1);
                 break;
             case 6:
-                int cisloUlozeni = 0;
-                ulozitPole(pole, &velikost, cisloUlozeni);
-                printf("Pole ulozeno pod číslem: ", cisloUlozeni);
-                return;
+                nacistZUlozenychPoli();
+                break;
             case 7:
+                ulozitPole(pole, velikost, cisloUlozeni);
+                return;
+            case 8:
                 return;
             default:
                 printf("\n Neplatný výběr");
@@ -177,7 +225,7 @@ void nabidkaMapa() {
 
 void nabidka() {
     while (1) {
-        printf("Vyber si jednu z možností "
+        printf("\n Vyber si jednu z možností "
             "\n 1 - Číselné Pole"
             "\n 2 - Mapa"
             "\n 3 - Konec"
@@ -200,8 +248,5 @@ void nabidka() {
     }
 
 int main() {
-    ulozenePole = malloc(pocetPoli *sizeof(*ulozenePole));
     nabidka();
-    free(pole);
-    free(ulozenePole);
 }
