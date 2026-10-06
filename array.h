@@ -7,13 +7,13 @@
 
 // Global
 
-int velikost;
-int *pole;
-int moznost;
-int pocetPoli = 0;
-int **ulozenePole;
-int *velikostUlozenychPoli;
-int cisloUlozeni = 0;
+extern int velikost;
+extern int *pole;
+extern int moznost;
+extern int pocetPoli;
+extern int **ulozenePole;
+extern int *velikostUlozenychPoli;
+extern int cisloUlozeni;
 
 // functions
 

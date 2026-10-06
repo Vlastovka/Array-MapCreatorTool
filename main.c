@@ -5,6 +5,7 @@
 
 // Moznosti pro pole
 
+
 void nabidkaPole() {
     int moznostProPole = 0;
 
@@ -77,6 +78,7 @@ void nabidkaPole() {
                        "\n 5 - Multiply two value in array");
                 switch (volba) {
                     case 1:
+                        break;
 
                 }
                 break;

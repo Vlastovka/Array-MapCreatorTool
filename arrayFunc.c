@@ -11,6 +11,14 @@
 
 #include "array.h"
 
+int velikost;
+int *pole;
+int moznost;
+int pocetPoli = 0;
+int **ulozenePole;
+int *velikostUlozenychPoli;
+int cisloUlozeni = 0;
+
 void nactiPole(int *pole, int velikost) {
     for (int i = 0; i < velikost; i++) {
         printf("Přidej hodnotu do pole: ");
