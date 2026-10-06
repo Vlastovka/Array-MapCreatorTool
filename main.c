@@ -177,32 +177,47 @@ void nabidkaPole() {
            "\n 1 - Print array"
            "\n 2 - Sort array"
            "\n 3 - Add value to array"
-           "\n 4 - Basic array math"
-           "\n 5 - Load array. WARNING current array will be deleted!"
-           "\n 6 - Save array & exit"
-           "\n 7 - Exit without saving");
+           "\n 4 - Find in array by index"
+           "\n 5 - Basic array math"
+           "\n 6 - Load array. WARNING current array will be deleted!"
+           "\n 7 - Save array & exit"
+           "\n 8 - Exit without saving"
+           "\n : ");
         scanf("%d", &moznostProPole);
-
         switch (moznostProPole) {
-            case 1:
-                bubbleSort(pole, velikost, 0);
-                sleep(1);
-                break;
-            case 2:
-                bubbleSort(pole, velikost, 1);
-                sleep(1);
-                break;
-            case 3:
-                konkretniHodnota(pole, velikost);
-                sleep(1);
-                break;
-            case 4:
+            case 1: // Print array select
                 vypisPole(pole, velikost);
                 sleep(1);
                 break;
-            case 5:
+            case 2: // Sort select
+                int moznost;
+                printf("\n 1 - Sort array from smallest to biggest"
+                       "\n 2 - Sort array from smallest to biggest"
+                       "\n :");
+                scanf("%d", &moznost);
+                switch (moznost) {
+                    case 1:
+                        bubbleSort(pole, velikost, moznost);
+                        break;
+                    case 2:
+                        bubbleSort(pole, velikost, moznost);
+                        break;
+                    default:
+                        printf("Please enter valid choice next time!");
+                        return;
+                }
+                sleep(1);
+                break;
+            case 3: // Add value to array select
                 pridejHodnotu(&pole, &velikost);
                 sleep(1);
+                break;
+            case 4: // Find in array by index select
+                konkretniHodnota(pole, velikost);
+                sleep(1);
+                break;
+            case 5: // Basic math array
+                // in process
                 break;
             case 6:
                 nacistZUlozenychPoli();
