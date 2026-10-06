@@ -170,15 +170,17 @@ void nabidkaPole() {
     }
     nactiPole(pole, velikost);
     while (moznost == 1) {
-        printf("\n 1 - minToMax "
-"\n 2 - maxToMin "
-"\n 3 - Hledani pomoci indexu "
-"\n 4 - Vypis pole "
-"\n 5 - Pridej hodnotu do pole"
-"\n 6 - Načíst uložené pole. Smaže se aktualní pole!"
-"\n 7 - Vratit se a uložit pole"
-"\n 8 - Vratit se bez uložení pole"
-"\n : ");
+        printf(""
+           "\n -------------------"
+           "\n |      ARRAY      |"
+           "\n -------------------"
+           "\n 1 - Print array"
+           "\n 2 - Sort array"
+           "\n 3 - Add value to array"
+           "\n 4 - Basic array math"
+           "\n 5 - Load array. WARNING current array will be deleted!"
+           "\n 6 - Save array & exit"
+           "\n 7 - Exit without saving");
         scanf("%d", &moznostProPole);
 
         switch (moznostProPole) {
@@ -204,11 +206,14 @@ void nabidkaPole() {
                 break;
             case 6:
                 nacistZUlozenychPoli();
+                sleep(1);
                 break;
             case 7:
                 ulozitPole(pole, velikost, cisloUlozeni);
+                sleep(1);
                 return;
             case 8:
+                sleep(1);
                 return;
             default:
                 printf("\n Neplatný výběr");
