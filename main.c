@@ -5,7 +5,6 @@
 
 // Moznosti pro pole
 
-
 void nabidkaPole() {
     int moznostProPole = 0;
 
@@ -45,7 +44,7 @@ void nabidkaPole() {
             case 2: // Sort select
                 int moznost;
                 printf("\n 1 - Sort array from smallest to biggest"
-                       "\n 2 - Sort array from smallest to biggest"
+                       "\n 2 - Sort array from biggest to smallest"
                        "\n :");
                 scanf("%d", &moznost);
                 switch (moznost) {
@@ -75,12 +74,29 @@ void nabidkaPole() {
                        "\n 2 - Count two value in array"
                        "\n 3 - Substract two value in array"
                        "\n 4 - Diviosn two value in array"
-                       "\n 5 - Multiply two value in array");
+                       "\n 5 - Multiply two value in array"
+                       "\n :");
+                scanf("%d", &volba);
                 switch (volba) {
                     case 1:
+                        arrayBasicMath(pole, velikost, volba);
                         break;
-
+                    case 2:
+                        arrayBasicMath(pole, velikost, volba);
+                        break;
+                    case 3:
+                        arrayBasicMath(pole, velikost, volba);
+                        break;
+                    case 4:
+                        arrayBasicMath(pole, velikost, volba);
+                        break;
+                    case 5: arrayBasicMath(pole, velikost, volba);
+                        break;
+                    default:
+                        printf("Please enter valid choice next time!");
+                        break;
                 }
+                sleep(1);
                 break;
             case 6:
                 nacistZUlozenychPoli();

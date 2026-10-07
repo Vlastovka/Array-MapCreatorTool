@@ -33,12 +33,12 @@ void bubbleSort(int *pole, int velikost, int funkce) {
         for (int j = 0; j < velikost - 1 - i; j++) {
             int *misto = &pole[j];
             int *druheMisto = &pole[j + 1];
-            if (*misto > *druheMisto && funkce == 0) { // minToMax funkce
+            if (*misto > *druheMisto && funkce == 1) { // minToMax funkce
                 int docasne = *misto;
                 *misto = *druheMisto;
                 *druheMisto = docasne;
             }
-            if (*misto < *druheMisto && funkce == 1) { // maxToMin Funkce
+            if (*misto < *druheMisto && funkce == 2) { // maxToMin Funkce
                 int docasne = *misto;
                 *misto = *druheMisto;
                 *druheMisto = docasne;
@@ -144,3 +144,85 @@ void nacistZUlozenychPoli() {
 }
 
 // Basic math functions
+
+void arrayBasicMath(int *pole, int velikost, int volba) {
+    int userNum1 = 0;
+    int userNum2 = 1;
+    int finalValue = 0;
+    switch (volba) {
+        case 1:
+            for (int i = 0; i < velikost; i++) {
+                finalValue += pole[i];
+            }
+            printf("\n Total array value = %d\n", finalValue);
+            break;
+        case 2:
+            printf("\n Enter first index "
+                   "\n :");
+            scanf("%d", &userNum1);
+            printf("\n Enter second index "
+                   "\n :");
+            scanf("%d", &userNum2);
+            if ((userNum1 == userNum2) || (userNum1 > velikost) || (userNum2 > velikost) || (userNum1 < 0) || (userNum2 < 0)) {
+                printf("\n Enter valid index!");
+                break;
+            }
+            finalValue = pole[userNum1] + pole[userNum2];
+            printf("\n%d ", pole[userNum1]);
+            printf(" + ");
+            printf("%d",pole[userNum2]);
+            printf(" = %d", finalValue);
+            break;
+        case 3:
+            printf("\n Enter first index "
+                   "\n :");
+            scanf("%d", &userNum1);
+            printf("\n Enter second index "
+                   "\n :");
+            scanf("%d", &userNum2);
+            if ((userNum1 == userNum2) || (userNum1 > velikost) || (userNum2 > velikost) || (userNum1 < 0) || (userNum2 < 0)) {
+                printf("\n Enter valid index!");
+                break;
+            }
+            finalValue = pole[userNum1] - pole[userNum2];
+            printf("\n%d ", pole[userNum1]);
+            printf(" - ");
+            printf("%d",pole[userNum2]);
+            printf(" = %d", finalValue);
+            break;
+        case 4:
+            printf("\n Enter first index "
+       "\n :");
+            scanf("%d", &userNum1);
+            printf("\n Enter second index "
+                   "\n :");
+            scanf("%d", &userNum2);
+            if ((userNum1 == userNum2) || (userNum1 >= velikost) || (userNum2 >= velikost) || (userNum1 < 0) || (pole[userNum2] <= 0)) {
+                printf("\n Enter valid index or divison cant be done with number 0!");
+                break;
+            }
+            float finalValueDivison = (float)pole[userNum1] / (float)pole[userNum2];
+            printf("\n%d ", pole[userNum1]);
+            printf(" / ");
+            printf("%d",pole[userNum2]);
+            printf(" = %f", finalValueDivison);
+            break;
+        case 5:
+            printf("\n Enter first index "
+       "\n :");
+            scanf("%d", &userNum1);
+            printf("\n Enter second index "
+                   "\n :");
+            scanf("%d", &userNum2);
+            if ((userNum1 == userNum2) || (userNum1 > velikost) || (userNum2 > velikost) || (userNum1 < 0) || (userNum2 < 0)) {
+                printf("Enter valid index!");
+                break;
+            }
+            finalValue = pole[userNum1] * pole[userNum2];
+            printf("\n%d", pole[userNum1]);
+            printf(" * ");
+            printf("%d",pole[userNum2]);
+            printf(" = %d", finalValue);
+            break;
+    }
+}

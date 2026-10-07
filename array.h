@@ -28,12 +28,6 @@ void pridejHodnotu(int **pole, int *velikost); // adding more values to array
 void ulozitPole(int *pole,int velikost,int cisloUlozeni);
 void nacistZUlozenychPoli();
 
-// Array math
-
-void totalValue(int *pole, int velikost);
-void countTwoValues(int *pole, int velikost);
-void substractTwoValues(int *pole, int velikost);
-void divisionTwoValues(int *pole, int velikost);
-void multiplyTwoValues(int *pole, int velikost);
+void arrayBasicMath(int *pole, int velikost, int volba); // array basic math
 
 #endif //UCENIC_ARRAY_H
