@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "array.h"
+#include "array/array.h"
+#include "map/map.h"
 
 // Moznosti pro pole
 
@@ -116,6 +117,27 @@ void nabidkaPole() {
     }
 }
 
+void map() {
+    int volba;
+    printf("\n ------------------");
+    printf("\n |       MAP      |");
+    printf("\n ------------------");
+    printf("\n 1 - Create map & print");
+    printf("\n 2 - Print map");
+    printf("\n 3 - Edit row");
+    printf("\n 4 - Edit column");
+    printf("\n 5 - Edit by row & column");
+    printf("\n 6 - Save map & exit");
+    printf("\n 7 - Exit without saving");
+    printf("\n : ");
+    scanf("%d", &volba);
+    switch (volba) {
+        case 1:
+            createMap();
+            break;
+    }
+}
+
 // Hlavni nabídka
 
 void nabidka() {
@@ -132,7 +154,7 @@ void nabidka() {
                 break;
             }
             case 2: {
-                // soon
+                map();
                 break;
                 }
             case 3: {

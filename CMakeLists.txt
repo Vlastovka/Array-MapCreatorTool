@@ -4,5 +4,7 @@ project(UceniC C)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(UceniC main.c
-        arrayFunc.c
-        array.h)
+        array/arrayFunc.c
+        array/array.h
+        map/map.h
+        map/mapFunc.c)
