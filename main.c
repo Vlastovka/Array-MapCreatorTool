@@ -129,7 +129,8 @@ void map() {
         printf("\n 4 - Edit column");
         printf("\n 5 - Edit by row & column");
         printf("\n 6 - Save map & exit");
-        printf("\n 7 - Exit without saving");
+        printf("\n 7 - Load saved map");
+        printf("\n 8 - Exit without saving");
         printf("\n : ");
         scanf("%d", &volba);
         switch (volba) {
@@ -139,6 +140,23 @@ void map() {
             case 2:
                 printMap();
                 break;
+            case 3:
+                editRow();
+                break;
+            case 4:
+                editColumn();
+                break;
+            case 5:
+                editByRowAndColumn();
+                break;
+            case 6:
+                saveMap();
+                return;
+            case 7:
+                loadMap();
+                break;
+            case 8:
+                return;
             default:
                 printf("Please enter valid choice next time!");
                 break;

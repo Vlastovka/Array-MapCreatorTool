@@ -12,10 +12,18 @@ extern int rows;
 extern int **mapArray;
 extern int ***savedMap;
 extern int saveMapNumber;
-
+extern char symbol;
+extern int *savedRows;
+extern int *savedColumns;
 // functions
 
 void createMap();
 void printMap();
-void saveMap(int **mapArray, int saveMapNumber);
-#endif //UCENIC_MAP_H
+
+void editRow();
+void editColumn();
+void editByRowAndColumn();
+void loadMap();
+void saveMap();
+
+#endif // UCENIC_MAP_H
