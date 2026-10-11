@@ -45,3 +45,13 @@ void createMap() {
         printf("\n");
     }
 }
+
+void printMap() {
+    printf("\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            printf("%c ", mapArray[i][j]);
+        }
+        printf("\n");
+    }
+}

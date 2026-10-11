@@ -16,5 +16,6 @@ extern int saveMapNumber;
 // functions
 
 void createMap();
+void printMap();
 void saveMap(int **mapArray, int saveMapNumber);
 #endif //UCENIC_MAP_H

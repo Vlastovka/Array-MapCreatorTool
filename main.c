@@ -119,22 +119,30 @@ void nabidkaPole() {
 
 void map() {
     int volba;
-    printf("\n ------------------");
-    printf("\n |       MAP      |");
-    printf("\n ------------------");
-    printf("\n 1 - Create map & print");
-    printf("\n 2 - Print map");
-    printf("\n 3 - Edit row");
-    printf("\n 4 - Edit column");
-    printf("\n 5 - Edit by row & column");
-    printf("\n 6 - Save map & exit");
-    printf("\n 7 - Exit without saving");
-    printf("\n : ");
-    scanf("%d", &volba);
-    switch (volba) {
-        case 1:
-            createMap();
-            break;
+    while (moznost == 2) {
+        printf("\n ------------------");
+        printf("\n |       MAP      |");
+        printf("\n ------------------");
+        printf("\n 1 - Create map & print");
+        printf("\n 2 - Print map");
+        printf("\n 3 - Edit row");
+        printf("\n 4 - Edit column");
+        printf("\n 5 - Edit by row & column");
+        printf("\n 6 - Save map & exit");
+        printf("\n 7 - Exit without saving");
+        printf("\n : ");
+        scanf("%d", &volba);
+        switch (volba) {
+            case 1:
+                createMap();
+                break;
+            case 2:
+                printMap();
+                break;
+            default:
+                printf("Please enter valid choice next time!");
+                break;
+        }
     }
 }
 
@@ -142,10 +150,10 @@ void map() {
 
 void nabidka() {
     while (1) {
-        printf("\n Vyber si jednu z možností "
-            "\n 1 - Číselné Pole"
-            "\n 2 - Mapa"
-            "\n 3 - Konec"
+        printf("\n Chose option "
+            "\n 1 - Number array"
+            "\n 2 - Map"
+            "\n 3 - End"
             "\n :");
         scanf("%d", &moznost);
         switch (moznost) {
